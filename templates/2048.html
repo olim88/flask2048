@@ -1,0 +1,116 @@
+<html>	  
+    <form action = "/play" method = "post">
+    <style>
+         header {
+            padding: 15px;
+            text-align: center;
+            font-size: 35px;
+        }
+        .gridContainer {   
+            display: grid;
+            width: 25%;
+            margin: auto;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2%;          
+        }
+        .gridContainer > girdBox {
+            aspect-ratio: 1/ 1;
+            display: flex;
+            align-items: center;     
+            text-align: center;
+            justify-content: center;
+           
+        }
+        .colour_0 {
+            background-color: #1E1E1E;
+        }
+        .colour_2 {
+            background-color: #420885;
+        }
+        .colour_4 {
+            background-color: #a01111;
+        }
+        .colour_8 {
+            background-color: #168616;
+        }
+        .colour_16 {
+            background-color: #b2b415;
+        }
+        .colour_32 {
+            background-color: #3d0a4d;
+        }
+        .colour_64 {
+            background-color: #178db1;
+        }
+        .colour_128 {
+            background-color: #ff0000;
+        }
+        .colour_256 {
+            background-color: #14775e;
+        }
+        .colour_512 {
+            background-color: #8fd63e;
+        }
+        .colour_1024 {
+            background-color: #795757;
+        }
+        .colour_2048 {
+            background-color: #0004ff;
+        }
+
+        
+
+        .controls {
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            width: 33%;
+            margin: auto;
+        }
+        .controls > control{
+            width:25%;
+            padding: 5px;
+        }
+        .button {
+            padding: 10px;
+            font-size: 25px;
+        }
+      
+    </style>           
+    <body>	        
+        <header>
+            <h1>2048</h1>
+            <p>Score: {{score}}</p>
+        </header>
+        <div class="gridContainer">      
+            {% for line in grid %}       
+                {% for value in line %}         
+                    <girdBox class="colour_{{value}}">     
+                        {% if value != 0 %}                     
+                            <h1>{{value}}</h1>     
+                        {% endif %}     
+                    </girdBox>
+                {% endfor %}      
+            {% endfor %}
+        </div>
+        <div class = "controls">
+            <div class = "controls">
+                <input class = "button" type="submit" name="control" value="Left">
+            </div>
+            <div class = "controls">
+                <input class = "button" type="submit" name="control" value="Right">
+            </div>
+            <div class = "controls">
+                <input class = "button" type="submit" name="control" value="Up">
+            </div>
+            <div class = "controls">
+                <input class = "button" type="submit" name="control" value="Down">
+            </div>
+            <div class = "controls">
+                <input class = "button" type="submit" name="control" value="Quit">
+            </div>
+        </controls>
+
+    </body>
+</form> 
+</html>
