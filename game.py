@@ -35,6 +35,7 @@ class game_state(object):
             self.score = 0
         else:
             self.score = int(starting_score)
+        self.murged_locations = [] # list of loctaions that have already been murged this move and can not be murged with again
 
     def __str__(self):
         return (f"score:{self.score}, state:{self.state}, grid:{self.grid}")
@@ -85,11 +86,12 @@ def try_move(pos1: vec2, pos2: vec2, current_state : game_state):
         current_state.grid[pos1.x][pos1.y] = 0
         empty = True
     #combine
-    elif current_state.grid[pos1.x][pos1.y] == current_state.grid[pos2.x][pos2.y]:
+    elif current_state.grid[pos1.x][pos1.y] == current_state.grid[pos2.x][pos2.y] and not pos2 in current_state.murged_locations:
          new_value = current_state.grid[pos2.x][pos2.y] * 2
          current_state.grid[pos2.x][pos2.y] = new_value
          current_state.grid[pos1.x][pos1.y] = 0
          current_state.score += new_value
+         current_state.murged_locations.append(pos2)
     
     return current_state, empty
 
