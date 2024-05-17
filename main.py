@@ -71,14 +71,14 @@ def play_post():
     
     #if player has won or lost move them to that path
     if game_state.state == game.state.win:
-        esp = make_response(redirect(url_for('win')))
+        esp = make_response(redirect(url_for('win',score = score)))
         esp.delete_cookie("state")
         esp.delete_cookie("score")
         if high_score == None or score > high_score: 
             esp.set_cookie("high_score",str(score))
         return esp
-    elif game_state.state == game.state.lose:
-        esp = make_response(redirect(url_for('lose')))
+    elif game_state.state == game.state.lost:
+        esp = make_response(redirect(url_for('lost',score = score)))
         esp.delete_cookie("state")
         esp.delete_cookie("score")
         if high_score == None or score > high_score: 
@@ -91,7 +91,19 @@ def play_post():
     return esp
 
 
+@app.route('/win?score=<score>', methods=['POST', 'GET'])
+def win(score: int):
+    if request.method == "GET":
+        return render_template('win.html', score = score)
+    
+    return redirect(url_for('start'))
 
+@app.route('/lost?score=<score>', methods=['POST', 'GET'])
+def lost(score: int):
+    if request.method == "GET":
+        return render_template('lost.html', score = score)
+    
+    return redirect(url_for('start'))
 
 
 if __name__ == '__main__':

@@ -23,7 +23,7 @@ class vec2(object):
 
 class state(Enum):
     playing = 0
-    lose = 1
+    lost = 1
     win = 2
 
 
@@ -116,7 +116,7 @@ def left(current_state: game_state) -> game_state:
             current_state = move_vector(vec2(y,x), vec2(0,-1), current_state)
 
     if check_loss(current_state.grid):
-        current_state.state = state.lose
+        current_state.state = state.lost
         return current_state
     if check_win(current_state.grid):
         current_state.state = state.win
@@ -131,7 +131,7 @@ def right(current_state: game_state) -> game_state:
             current_state = move_vector(vec2(y,x), vec2(0,+1), current_state)
 
     if check_loss(current_state.grid):
-        current_state.state = state.lose
+        current_state.state = state.lost
         return current_state
     if check_win(current_state.grid):
         current_state.state = state.win
@@ -146,7 +146,7 @@ def up(current_state: game_state) -> game_state:
             current_state = move_vector(vec2(y,x), vec2(-1,0), current_state)
 
     if check_loss(current_state.grid):
-        current_state.state = state.lose
+        current_state.state = state.lost
         return current_state
     if check_win(current_state.grid):
         current_state.state = state.win
@@ -161,7 +161,7 @@ def down(current_state: game_state) -> game_state:
             current_state = move_vector(vec2(y,x), vec2(1,0), current_state)
     
     if check_loss(current_state.grid):
-        current_state.state = state.lose
+        current_state.state = state.lost
         return current_state
     if check_win(current_state.grid):
         current_state.state = state.win
